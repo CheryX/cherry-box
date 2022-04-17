@@ -1,11 +1,22 @@
-import textBox from './lib/textBox.js';
+import { textBox } from './lib/textBox.js';
 import Canvas from "canvas";
 import fs from "fs";
 
 let canvas = new Canvas.createCanvas(800, 600);
 let ctx = canvas.getContext("2d");
 
-let text = textBox(800, 600, [{text: "hello world", color: "red"}], 200, "Arial");
+let textSchema = [
+    { text: "Hello ", color: "red" },
+    { text: "World", color: "green",
+        shadow: {
+            color: "black",
+            offset: [10, 10],
+            blur: 10
+        }
+    },
+    { text: " !", color: "red" }
+];
+let text = textBox(800, 600, textSchema, 200, "Arial");
 ctx.drawImage(text, 0, 0)
 
 // Save canvas to file

@@ -5,7 +5,7 @@ cherry-box is a [Node.js](https://nodejs.org/en/about/) package filled with util
 # Example usage
 
 ```js
-import textBox from "cherry-box";
+import { textBox } from "cherry-box";
 import Canvas from "canvas";
 
 let canvas = new Canvas.createCanvas(800, 600);
@@ -37,7 +37,7 @@ Example text schema:
         text: "I like cookies!",
         color: "#ff8800",
         shadow: {
-            x: 10, y: 10, blur: 5, color: "red"
+            offset: [10, 10], blur: 5, color: "red"
         }
     }
 ]
@@ -52,8 +52,7 @@ name | description | example | type | required
 --- | --- | --- | --- | ---
 color | Color of the shadow | #FFFFFF | string | true
 blur | Blur of the shadow | 5 | number | true
-x | X offset of the shadow | 5 | number | true
-y | Y offset of the shadow | 5 | number | true
+offset | X and Y offset of the shadow | [10, 5] | array | true
 
 ## textBox
 
