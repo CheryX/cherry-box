@@ -29,6 +29,8 @@ name | description | example | type | required
 text | Text to be displayed | Hello world | string | true
 color | Color of the text | #FFFFFF | string | true
 shadow | Shadow of the text | | shadow | false
+font | Font of the text | Arial | string | true
+modifier | Modifier of the text | bold | string | true
 
 Example text schema:
 ```js
@@ -38,7 +40,9 @@ Example text schema:
         color: "#ff8800",
         shadow: {
             offset: [10, 10], blur: 5, color: "red"
-        }
+        },
+        font: "Arial",
+        modifier: "bold"
     }
 ]
 ```
