@@ -1,0 +1,19 @@
+{
+  "name": "cherry-box",
+  "version": "1.0.0",
+  "description": "A node-canvas package filled with utilities, manage text boxes easily and more",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "canvas",
+    "textbox"
+  ],
+  "author": "CheryX",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "canvas": "^2.9.1"
+  }
+}
