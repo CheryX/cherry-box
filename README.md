@@ -11,7 +11,18 @@ import Canvas from "canvas";
 let canvas = new Canvas.createCanvas(800, 600);
 let ctx = canvas.getContext("2d");
 
-let text = textBox(800, 600, [{text: "hello world", color: "red"}], 200, "Arial");
+let textSchema = [
+    {
+        text: "I like cookies!",
+        color: "#ff8800",
+        font: "Arial",
+        modifier: "bold",
+        shadow: {
+            offset: [10, 10], blur: 5, color: "red"
+        },
+    }
+]
+let text = textBox(800, 600, textSchema, 200, ['middle', 'center']);
 ctx.drawImage(text, 0, 0)
 ```
 
@@ -83,6 +94,6 @@ Example: `['top', 'middle']`
 
 Example use of textBox in your code: 
 ```js
-const formattedUsername = textBox(240, 85, 300, 60, text, 90, 'Arial', ['left', 'middle'])
+const formattedUsername = textBox(240, 85, 300, 60, text, 90, ['middle', 'center']);
 ctx.drawImage(formattedUsername, 0, 0)
 ```
