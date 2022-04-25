@@ -2,23 +2,23 @@ import { textBox } from "./lib/textBox.js";
 import Canvas from "canvas";
 import fs from "fs";
 
-let canvas = new Canvas.createCanvas(800, 600);
-let ctx = canvas.getContext("2d");
+const canvas = new Canvas.createCanvas(800, 600);
+const ctx = canvas.getContext("2d");
 
 let upperText = [
     {
-        text: "test",
+        text: "This text is in the center of an image",
         color: "white",
-        font: "Impact",
         modifier: "bold",
+        font: "ubuntu",
         shadow: {
-            color: "black",
+            color: "red",
             offset: [0, 0],
             blur: 10
         }
     }
 ];
-textBox(ctx, 5, 10, canvas.width-10, 100, upperText, 200, ["top", "center"]);
+textBox(ctx, 0, 0, canvas.width, canvas.height, upperText, 100, ["middle", "center"])
 
 // Save canvas to file
 let out = fs.createWriteStream("./out.png");
