@@ -94,6 +94,33 @@ Example: `['top', 'middle']`
 
 Example use of textBox in your code: 
 ```js
-const formattedUsername = textBox(240, 85, 300, 60, text, 90, ['middle', 'center']);
-ctx.drawImage(formattedUsername, 0, 0)
+textBox(ctx, 0, 0, canvas.width, canvas.height-20, upperText, 80, ["bottom", "center"]);
+```
+
+## wrapText
+
+wrapText is a function similar to textBox, but it doesn't just align the text. It also wraps the text to fit in the specified width.
+
+### wrapText Schema
+
+name | description | example | type | required
+--- | --- | --- | --- | ---
+ctx | Canvas context | | object | true
+x | X coordinate of the text box | 0 | number | true
+y | Y coordinate of the text box | 0 | number | true
+width | Width of the text box | 100 | number | true
+text | Text to be displayed | | textSchema | true
+fontSize | Font size of the text | 100 | number | true
+align | Align of the text | justify | string | true
+
+### Align values
+
+* `left`
+* `center`
+* `right`
+* `justify`
+
+Example use of `wrapText` in your code: 
+```js
+wrapText(ctx, 0, 0, canvas.width, wrapTextBox, 20, 'justify');
 ```
