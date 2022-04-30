@@ -31,16 +31,6 @@ let wrapTextBox = [
             offset: [0, 0],
             blur: 10
         }
-    },
-    {
-        text: "E",
-        color: "blue",
-        font: "Ubuntu"
-    },
-    {
-        text: "Never Gonna Give You Up is the debut single recorded by English singer and songwriter Rick Astley, released on 27 July 1987.",
-        color: "green",
-        font: "Ubuntu"
     }
 ]
 wrapText(ctx, 0, 0, canvas.width, wrapTextBox, 20, 'justify');
