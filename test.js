@@ -37,7 +37,7 @@ let wrapTextBox = [
         font: "Ubuntu"
     }
 ]
-wrapText(ctx, 0, 0, canvas.width, wrapTextBox, 20, 'left');
+wrapText(ctx, 0, 0, canvas.width, wrapTextBox, 20, 'justify');
 
 // Save canvas to file
 let out = fs.createWriteStream("./out.png");
