@@ -28,12 +28,12 @@ let wrapTextBox = [
         modifier: "bold",
         shadow: {
             color: "red",
-            offset: [0, 0],
+            offset: [10, 10],
             blur: 10
         }
     }
 ]
-wrapText(ctx, 0, 0, canvas.width, wrapTextBox, 20, 'justify');
+wrapText(ctx, 25, 25, canvas.width-50, wrapTextBox, 20, 'justify');
 
 // Save canvas to file
 let out = fs.createWriteStream("./out.png");
