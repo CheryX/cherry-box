@@ -19,8 +19,5 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/CheryX/cherry-box.git"
-  },
-  "publishConfig": {
-   "@cheryx:registry": "https://npm.pkg.github.com"
- }
+  }
 }
