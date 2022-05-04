@@ -22,8 +22,7 @@ let textSchema = [
         },
     }
 ]
-let text = textBox(800, 600, textSchema, 200, ['middle', 'center']);
-ctx.drawImage(text, 0, 0)
+textBox(800, 600, textSchema, 200, ['middle', 'center']);
 ```
 
 # Documentation
