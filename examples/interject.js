@@ -1,7 +1,5 @@
-//import { textBox, wrapText } from "./lib/textBox.js";
-import { textBox, wrapText } from "./index.min.js";
+import { textBox, wrapText } from "cherry-box";
 import Canvas from "canvas";
-import fs from "fs";
 
 const canvas = new Canvas.createCanvas(800, 600);
 const ctx = canvas.getContext("2d");
@@ -35,8 +33,3 @@ let wrapTextBox = [
     }
 ]
 wrapText(ctx, 25, 25, canvas.width-50, wrapTextBox, 20, 'justify');
-
-// Save canvas to file
-let out = fs.createWriteStream("./out.png");
-let stream = canvas.createPNGStream();
-stream.pipe(out);
