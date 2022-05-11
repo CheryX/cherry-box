@@ -1,5 +1,5 @@
-//import { textBox, wrapText } from "./lib/textBox.js";
-import { textBox, wrapText } from "./index.min.js";
+import { textBox, wrapText } from "./lib/textBox.js";
+// import { textBox, wrapText } from "./index.min.js";
 import Canvas from "canvas";
 import fs from "fs";
 
