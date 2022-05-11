@@ -1,6 +1,6 @@
 {
   "name": "cherry-box",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "A node-canvas package filled with utilities, manage text boxes easily and more",
   "main": "index.js",
   "scripts": {
