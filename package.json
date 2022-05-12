@@ -13,9 +13,6 @@
   "author": "CheryX",
   "license": "ISC",
   "type": "module",
-  "dependencies": {
-    "canvas": "^2.9.1"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/CheryX/cherry-box.git"
