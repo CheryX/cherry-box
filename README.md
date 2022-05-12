@@ -84,6 +84,12 @@ maxFont | Max font size of the text | 100 | number | true
 fontName | Font of the text | Arial | string | true
 align | Align of the text |  | array | true
 
+### textBox Errors
+
+Code | Description
+--- | ---
+601 | Text is too big to be displayed
+
 ### Align values
 
 1. Horizontal: `left`, `center` or `right`
