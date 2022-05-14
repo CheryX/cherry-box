@@ -13,30 +13,6 @@ test("getLines", () => {
 
     let lines = getLines(ctx, text, 1000, 20);
     expect(lines.length).toBe(13);
-    expect(lines[0]).toStrictEqual([
-        { text: "I'd", font: 'Arial' },
-        { text: 'like', font: 'Arial' },
-        { text: 'to', font: 'Arial' },
-        { text: 'interject', font: 'Arial' },
-        { text: 'for', font: 'Arial' },
-        { text: 'a', font: 'Arial' },
-        { text: 'moment,', font: 'Arial' },
-        { text: 'what', font: 'Arial' },
-        { text: 'you', font: 'Arial' },
-        { text: 'reffered', font: 'Arial' },
-        { text: 'to', font: 'Arial' },
-        { text: 'as', font: 'Arial' },
-        { text: 'Linux', font: 'Arial' },
-        { text: 'was', font: 'Arial' },
-        { text: 'in', font: 'Arial' },
-        { text: 'fact,', font: 'Arial' },
-        { text: 'GNU/Linux,', font: 'Arial' },
-        { text: 'or', font: 'Arial' },
-        { text: 'as', font: 'Arial' },
-        { text: "I've", font: 'Arial' },
-        { text: 'recently', font: 'Arial' },
-        { text: 'taken', font: 'Arial' },
-        { text: 'to', font: 'Arial' }
-    ]);
+    expect(lines[0].length).toBe(23);
 
 });
