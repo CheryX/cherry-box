@@ -1,2 +1,3 @@
-import { textBox, wrapText } from './lib/textBox.js';
-export { textBox, wrapText };
+import { textBox } from './lib/textBox.js';
+import { wrapText, getLines } from './lib/wrapText.js';
+export { textBox, wrapText, getLines };
