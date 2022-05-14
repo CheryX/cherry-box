@@ -92,14 +92,14 @@ Code | Description
 
 ### Align values
 
-1. Horizontal: `left`, `center` or `right`
-2. Vertical: `top`, `middle` or `bottom`
+1. Horizontal: left `0`, center `1`, right `2`
+2. Vertical: top `0`, middle `1`, bottom `2`
 
-Example: `['top', 'middle']`
+Example: `[1,1]`
 
 Example use of textBox in your code: 
 ```js
-textBox(ctx, 0, 0, canvas.width, canvas.height-20, upperText, 80, ["bottom", "center"]);
+textBox(ctx, 0, 0, canvas.width, canvas.height-20, upperText, 80, [2,1]);
 ```
 
 ## wrapText
@@ -120,12 +120,12 @@ align | Align of the text | justify | string | true
 
 ### Align values
 
-* `left`
-* `center`
-* `right`
-* `justify`
+* left `0`
+* center `1`
+* right `2`
+* justify `3`
 
 Example use of `wrapText` in your code: 
 ```js
-wrapText(ctx, 0, 0, canvas.width, wrapTextBox, 20, 'justify');
+wrapText(ctx, 0, 0, canvas.width, wrapTextBox, 20, 3);
 ```

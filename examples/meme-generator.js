@@ -36,5 +36,5 @@ let lowerText = [
 ];
 
 //Draw text
-textBox(ctx, 0, 0, canvas.width, 80, upperText, 80, ["middle", "center"]);
-textBox(ctx, 0, canvas.height-80, canvas.width, 80, lowerText, 80, ["middle", "center"]);
+textBox(ctx, 0, 0, canvas.width, 80, upperText, 80, [1, 1]);
+textBox(ctx, 0, canvas.height-80, canvas.width, 80, lowerText, 80, [1, 1]);
