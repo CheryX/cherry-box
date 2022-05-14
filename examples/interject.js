@@ -17,7 +17,7 @@ let upperText = [
         }
     }
 ];
-textBox(ctx, 0, 0, canvas.width, canvas.height-20, upperText, 80, ["bottom", "center"]);
+textBox(ctx, 0, 0, canvas.width, canvas.height-20, upperText, 80, [2, 1]);
 
 let wrapTextBox = [
     {
@@ -32,4 +32,4 @@ let wrapTextBox = [
         }
     }
 ]
-wrapText(ctx, 25, 25, canvas.width-50, wrapTextBox, 20, 'justify');
+wrapText(ctx, 25, 25, canvas.width-50, wrapTextBox, 20, 3);

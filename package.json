@@ -1,10 +1,10 @@
 {
   "name": "cherry-box",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "A node-canvas package filled with utilities, manage text boxes easily and more",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "jest"
   },
   "keywords": [
     "canvas",
@@ -13,11 +13,13 @@
   "author": "CheryX",
   "license": "ISC",
   "type": "module",
-  "dependencies": {
-    "canvas": "^2.9.1"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/CheryX/cherry-box.git"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.17.9",
+    "canvas": "^2.9.1",
+    "jest": "^28.1.0"
   }
 }
