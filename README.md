@@ -22,7 +22,7 @@ let textSchema = [
         },
     }
 ]
-textBox(800, 600, textSchema, 200, ['middle', 'center']);
+textBox(800, 600, textSchema, 200, [1, 1]);
 ```
 
 # Documentation
