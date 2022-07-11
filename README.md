@@ -116,7 +116,7 @@ y | Y coordinate of the text box | 0 | number | true
 width | Width of the text box | 100 | number | true
 text | Text to be displayed | | textSchema | true
 fontSize | Font size of the text | 100 | number | true
-align | Align of the text | justify | string | true
+align | Align of the text | justify | number | true
 
 ### Align values
 
