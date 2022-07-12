@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.textBox = void 0;
-var textAttr_1 = require("./textAttr");
+import paintText, { getTotalWidth, TextObject } from './textAttr';
+
 /**
  * Text that adjusts to the size of the canvas
  * @param ctx Canvas context
@@ -13,15 +11,16 @@ var textAttr_1 = require("./textAttr");
  * @param fontSize Maximum font size of the text
  * @param align Alignment of the text
  */
-function textBox(ctx, x, y, width, height, text, fontSize, align) {
-    if (align === void 0) { align = [1, 1]; }
+function textBox(ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, text: Array<TextObject>, fontSize: number, align=[1, 1]) {
+
     ctx.save();
+    
     // Resize the textbox if the text is too long
-    var textWidth = (0, textAttr_1.getTotalWidth)(ctx, text, fontSize);
-    if (textWidth > width)
-        fontSize *= width / textWidth;
-    ;
-    textWidth = (0, textAttr_1.getTotalWidth)(ctx, text, fontSize);
+    let textWidth = getTotalWidth(ctx, text, fontSize);
+    if (textWidth > width) fontSize *= width / textWidth;;
+
+    textWidth = getTotalWidth(ctx, text, fontSize);
+
     // Calculate the position of the text
     switch (align[0]) {
         case 0:
@@ -34,6 +33,7 @@ function textBox(ctx, x, y, width, height, text, fontSize, align) {
             y += height;
             break;
     }
+
     switch (align[1]) {
         case 1:
             x += (width - textWidth) / 2;
@@ -42,13 +42,17 @@ function textBox(ctx, x, y, width, height, text, fontSize, align) {
             x += width - textWidth;
             break;
     }
-    (0, textAttr_1.default)(ctx, text, x, y, fontSize);
+
+    paintText(ctx, text, x, y, fontSize);
     ctx.restore();
+
     return {
         x: x,
         y: y,
         width: textWidth,
         height: fontSize,
     };
+
 }
-exports.textBox = textBox;
+
+export { textBox };
