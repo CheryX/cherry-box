@@ -54,14 +54,15 @@ function paintText(ctx: CanvasRenderingContext2D, text: Array<TextObject>, x: nu
         if (text[i].modifier == undefined) text[i].modifier = '';
         ctx.font = `${text[i].modifier} ${fontSize}px ${text[i].font}`;
         
-        // if (text[i].shadow) {
+        if (text[i].shadow) {
+
+            //If it works, it works, but it still doesn't work (please someone fix this)
+            ctx.shadowColor = `${text[i].shadow?.color}`
+            //ctx.shadowOffsetX = text[i].shadow?.offset[0] * fontSize / 100;
+            //ctx.shadowOffsetY = text[i].shadow?.offset[1] * fontSize / 100;
+            ctx.shadowBlur = parseInt(`${text[i].shadow?.blur}`)
             
-        //     ctx.shadowColor = text[i].shadow.color;
-        //     ctx.shadowOffsetX = text[i].shadow.offset[0] * fontSize / 100;
-        //     ctx.shadowOffsetY = text[i].shadow.offset[1] * fontSize / 100;
-        //     ctx.shadowBlur = text[i].shadow.blur;
-            
-        // } else ctx.shadowColor = "transparent";
+        } else ctx.shadowColor = "transparent";
         
         ctx.fillText(text[i].text, x, y);
         x += ctx.measureText(text[i].text).width + spaceWidth;
