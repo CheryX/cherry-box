@@ -11,36 +11,36 @@ import paintText, { getTotalWidth, TextObject, getLines } from './textAttr';
  * @param align Alignment of the text
  */
  function wrapText(ctx: CanvasRenderingContext2D, x: number, y: number, width: number, text: Array<TextObject>, fontSize: number, align=1) {
-    
-    ctx.save();
-    
-    let lines = getLines(ctx, text, width, fontSize);
-    let spaceWidth = fontSize / 4;
-    
-    for (let i = 0; i < lines.length; i++) {
-        let textWidth = getTotalWidth(ctx, lines[i], fontSize, spaceWidth);
+	
+	ctx.save();
+	
+	let lines = getLines(ctx, text, width, fontSize);
+	let spaceWidth = fontSize / 4;
+	
+	for (let i = 0; i < lines.length; i++) {
+		let textWidth = getTotalWidth(ctx, lines[i], fontSize, spaceWidth);
 
-        switch (align) {
-            case 1:
-                x += (width - textWidth) / 2;
-                break;
-            case 2:
-                x += width - textWidth;
-                break;
-            case 3:
-                let rawTextWidth = getTotalWidth(ctx, lines[i], fontSize);
-                spaceWidth = (width - rawTextWidth) / (lines[i].length - 1);
-    
-                if (spaceWidth < 4) spaceWidth = 4;
-                if (spaceWidth > 30) spaceWidth = 10;
+		switch (align) {
+			case 1:
+				x += (width - textWidth) / 2;
+				break;
+			case 2:
+				x += width - textWidth;
+				break;
+			case 3:
+				let rawTextWidth = getTotalWidth(ctx, lines[i], fontSize);
+				spaceWidth = (width - rawTextWidth) / (lines[i].length - 1);
+	
+				if (spaceWidth < 4) spaceWidth = 4;
+				if (spaceWidth > 30) spaceWidth = 10;
 
-                break;
-        }
+				break;
+		}
 
-        paintText(ctx, lines[i], x, y+fontSize*(i+1), fontSize, spaceWidth);
-    }
+		paintText(ctx, lines[i], x, y+fontSize*(i+1), fontSize, spaceWidth);
+	}
 
-    ctx.restore();
+	ctx.restore();
 
 }
 

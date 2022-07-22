@@ -1,13 +1,13 @@
 interface TextObject {
-    text: string,
-    font: string,
-    color?: string,
-    modifier?: string, //Bold, italic, etc.
-    shadow?: {
-        offset: Array<number>,
-        color: string,
-        blur: number
-    }
+	text: string,
+	font: string,
+	color: string,
+	modifier?: string,
+	shadow?: {
+		offset: Array<number>,
+		color: string,
+		blur: number
+	}
 }
 
 /**
@@ -20,17 +20,17 @@ interface TextObject {
  */
 function getTotalWidth(ctx: CanvasRenderingContext2D, text: Array<TextObject>, fontSize: number, spaceWidth: number=0) {
 
-    let width: number = 0;
+	let width: number = 0;
 
-    for (let i = 0; i < text.length; i++) {
+	for (let i = 0; i < text.length; i++) {
 
-        if (text[i].modifier == null) text[i].modifier = '';
-        ctx.font = `${text[i].modifier} ${fontSize}px ${text[i].font}`;
-        width += ctx.measureText(text[i].text).width + spaceWidth;
+		if (text[i].modifier == null) text[i].modifier = '';
+		ctx.font = `${text[i].modifier} ${fontSize}px ${text[i].font}`;
+		width += ctx.measureText(text[i].text).width + spaceWidth;
 
-    }
+	}
 
-    return width - spaceWidth;
+	return width - spaceWidth;
 }
 
 
@@ -44,32 +44,32 @@ function getTotalWidth(ctx: CanvasRenderingContext2D, text: Array<TextObject>, f
  * @param spaceWidth Width of the space between words 
  */
 function paintText(ctx: CanvasRenderingContext2D, text: Array<TextObject>, x: number, y: number, fontSize: number, spaceWidth: number=0) {
-    
-    ctx.save();
-    
-    for (let i = 0; i < text.length; i++) {
+	
+	ctx.save();
+	
+	for (let i = 0; i < text.length; i++) {
 
-        ctx.fillStyle = `${text[i].color}`
-        
-        if (text[i].modifier == undefined) text[i].modifier = '';
-        ctx.font = `${text[i].modifier} ${fontSize}px ${text[i].font}`;
-        
-        if (text[i].shadow) {
+		let textPart = text[i];
+		textPart.modifier = '' || textPart.modifier;
 
-            //If it works, it works, but it still doesn't work (please someone fix this)
-            ctx.shadowColor = `${text[i].shadow?.color}`
-            //ctx.shadowOffsetX = text[i].shadow?.offset[0] * fontSize / 100;
-            //ctx.shadowOffsetY = text[i].shadow?.offset[1] * fontSize / 100;
-            ctx.shadowBlur = parseInt(`${text[i].shadow?.blur}`)
-            
-        } else ctx.shadowColor = "transparent";
-        
-        ctx.fillText(text[i].text, x, y);
-        x += ctx.measureText(text[i].text).width + spaceWidth;
-        
-    }
-    
-    ctx.restore();
+		ctx.fillStyle = textPart.color
+		ctx.font = `${textPart.modifier} ${fontSize}px ${textPart.font}`;
+		
+		if (textPart.shadow !== undefined) {
+
+			ctx.shadowColor = textPart.shadow.color
+			ctx.shadowOffsetX = textPart.shadow.offset[0] * fontSize / 100;
+			ctx.shadowOffsetY = textPart.shadow.offset[1] * fontSize / 100;
+			ctx.shadowBlur = textPart.shadow.blur
+			
+		} else ctx.shadowColor = "transparent";
+		
+		ctx.fillText(textPart.text, x, y);
+		x += ctx.measureText(textPart.text).width + spaceWidth;
+		
+	}
+	
+	ctx.restore();
 }
 
 /**
@@ -82,38 +82,38 @@ function paintText(ctx: CanvasRenderingContext2D, text: Array<TextObject>, x: nu
  */
 function getLines(ctx: CanvasRenderingContext2D, text: Array<TextObject>, width: number, fontSize: number) {
 
-    let spaceWidth = fontSize / 4;
-    
-    // Generate the lines
-    let lines: Array<Array<TextObject>> = [];
-    let line: Array<TextObject> = [];
-    for (let i = 0; i < text.length; i++) {
-        
-        let splitText = text[i].text.split(' ');
+	let spaceWidth = fontSize / 4;
+	
+	// Generate the lines
+	let lines: Array<Array<TextObject>> = [];
+	let line: Array<TextObject> = [];
+	for (let i = 0; i < text.length; i++) {
+		
+		let splitText = text[i].text.split(' ');
 
-        for (let j = 0; j < splitText.length; j++) {
+		for (let j = 0; j < splitText.length; j++) {
 
-            let textRich = text[i];
-            textRich.text = splitText[j];
+			let textRich = text[i];
+			textRich.text = splitText[j];
 
-            // Remove unnecessary info in the object
-            textRich = JSON.parse(JSON.stringify(textRich));
+			// Remove unnecessary info in the object
+			textRich = JSON.parse(JSON.stringify(textRich));
 
-            let lineWidth = getTotalWidth(ctx, line, fontSize, spaceWidth);
-            let textWidth = getTotalWidth(ctx, [textRich], fontSize, spaceWidth);
+			let lineWidth = getTotalWidth(ctx, line, fontSize, spaceWidth);
+			let textWidth = getTotalWidth(ctx, [textRich], fontSize, spaceWidth);
 
-            if (lineWidth + textWidth + spaceWidth > width) {
-                lines.push(line);
-                line = [];
-            }
+			if (lineWidth + textWidth + spaceWidth > width) {
+				lines.push(line);
+				line = [];
+			}
 
-            line.push(textRich);
+			line.push(textRich);
 
-        }
-    }
+		}
+	}
 
-    lines.push(line);
-    return lines;
+	lines.push(line);
+	return lines;
 
 }
 
