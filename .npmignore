@@ -1,2 +1,5 @@
 src
 tsconfig.json
+.vscode
+jestconfig.json
+README.md

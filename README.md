@@ -5,24 +5,74 @@ cherry-box is a [Node.js](https://nodejs.org/en/about/) package filled with util
 # Example usage
 
 ```js
-import { textBox } from "cherry-box";
-import Canvas from "canvas";
+const cb = require("cherry-box")
+const Canvas = require("canvas")
+const fs = require("fs");
 
-let canvas = new Canvas.createCanvas(800, 600);
-let ctx = canvas.getContext("2d");
+let canvas = Canvas.createCanvas(1000, 200);
+let ctx = canvas.getContext('2d');
 
-let textSchema = [
+let text = [
     {
         text: "I like cookies!",
-        color: "#ff8800",
-        font: "Arial",
+        color: "#ffffff",
+        font: "monospace",
         modifier: "bold",
-        shadow: {
-            offset: [10, 10], blur: 5, color: "red"
-        },
     }
 ]
-textBox(800, 600, textSchema, 200, [1, 1]);
+cb.textBox(ctx, 0, 0, 1000, 200, text, 200, [1, 1]);
+
+// Save canvas to file
+let out = fs.createWriteStream("./out.png");
+let stream = canvas.createPNGStream();
+stream.pipe(out); 
+```
+
+Using modules:
+
+```js
+import { textBox } from "cherry-box";
+import { createCanvas } from "canvas";
+import fs from "fs";
+
+let canvas = Canvas.createCanvas(1000, 200);
+let ctx = canvas.getContext('2d');
+
+let text = [
+    {
+        text: "I like cookies!",
+        color: "#ffffff",
+        font: "monospace",
+        modifier: "bold",
+    }
+]
+textBox(ctx, 0, 0, 1000, 200, text, 200, [1, 1]);
+
+// Save canvas to file
+let out = fs.createWriteStream("./out.png");
+let stream = canvas.createPNGStream();
+stream.pipe(out); 
+```
+
+# Using Typescript
+
+When using textObject you also need to import `TextObject`
+
+```ts
+import { textObject } from "cherry-box";
+
+...
+
+let text: TextObject = [
+    {
+        text: "I like cookies!",
+        color: "#ffffff",
+        font: "monospace",
+        modifier: "bold",
+    }
+]
+
+...
 ```
 
 # Documentation
@@ -31,16 +81,28 @@ textBox(800, 600, textSchema, 200, [1, 1]);
 
 * [textBox](#textBox) - Align the text to specified width and height, adjust the size of the font so it fits.
 * [textSchema](#textSchema) - An easy way to specify text color, font, shadow and more into a JSON object.
-## textSchema
-Text schema is made of multiple objects. These objects accepts the following values:
+
+## TextObject
+TextObject is made of multiple objects. These objects accepts the following values:
 
 name | description | example | type | required
 --- | --- | --- | --- | ---
-text | Text to be displayed | Hello world | string | true
-color | Color of the text | #FFFFFF | string | true
-shadow | Shadow of the text | | shadow | false
-font | Font of the text | Arial | string | true
-modifier | Modifier of the text | bold | string | true
+text | Text to be displayed | `Hello world` | string | true
+font | Font of the text | `Arial` | string | true
+color | Color of the text | `#FFFFFF` | string | true
+modifier | Modifier of the text | `bold` | string | false
+shadow | Shadow of the text | | object| false
+
+### Shadow schema
+Shadow is a JSON object with the following values:
+
+> `x` and `y` offsets are relative to the text size. For example use `x: 10, y: 10`
+
+name | description | example | type | required
+--- | --- | --- | --- | ---
+color | Color of the shadow | `#FFFFFF` | string | true
+blur | Blur of the shadow | `5` | number | true
+offset | X and Y offset of the shadow | `[10, 5]` | array | true
 
 Example text schema:
 ```js
@@ -57,17 +119,6 @@ Example text schema:
 ]
 ```
 
-### Shadow schema
-Shadow is a JSON object with the following values:
-
-> `x` and `y` offsets are relative to the text size. For example use `x: 10, y: 10` for minecraft font.
-
-name | description | example | type | required
---- | --- | --- | --- | ---
-color | Color of the shadow | #FFFFFF | string | true
-blur | Blur of the shadow | 5 | number | true
-offset | X and Y offset of the shadow | [10, 5] | array | true
-
 ## textBox
 
 textBox is an easy way to align your text, decrease font size to fit in an area and more.
@@ -75,20 +126,14 @@ textBox is an easy way to align your text, decrease font size to fit in an area 
 
 name | description | example | type | required
 --- | --- | --- | --- | ---
-x | X position of the textbox | 0 | number | true
-y | Y position of the textbox | 0 | number | true
-width | Width of the textbox | 100 | number | true
-height | Height of the textbox | 100 | number | true
-text | Text to be displayed | | textSchema | true
-maxFont | Max font size of the text | 100 | number | true
-fontName | Font of the text | Arial | string | true
-align | Align of the text |  | array | true
-
-### textBox Errors
-
-Code | Description
---- | ---
-601 | Text is too big to be displayed
+ctx | Canvas context | | CanvasRenderingContext2D | true
+x | X coordinate of the text box | `0` | number | true
+y | Y coordinate of the text box | `0` | number | true
+width | Width of the text box | `100` | number | true
+height | Height of the text box | `100` | number | true
+text | Text to be displayed in the text box | | TextObject | true
+fontSize | Maximum font size of the text | `100` | number | true
+align | Align of the text | `[1,1]` | array | true
 
 ### Align values
 
@@ -110,13 +155,13 @@ wrapText is a function similar to textBox, but it doesn't just align the text. I
 
 name | description | example | type | required
 --- | --- | --- | --- | ---
-ctx | Canvas context | | object | true
-x | X coordinate of the text box | 0 | number | true
-y | Y coordinate of the text box | 0 | number | true
-width | Width of the text box | 100 | number | true
-text | Text to be displayed | | textSchema | true
-fontSize | Font size of the text | 100 | number | true
-align | Align of the text | justify | number | true
+ctx | Canvas context | | CanvasRenderingContext2D | true
+x | X coordinate of the text box | `0` | number | true
+y | Y coordinate of the text box | `0` | number | true
+width | Width of the text box | `100` | number | true
+text | Text to be displayed in the text box | | TextObject | true
+fontSize | Maximum font size of the text | `100` | number | true
+align | Align of the text | `3` | number | true
 
 ### Align values
 
@@ -127,5 +172,5 @@ align | Align of the text | justify | number | true
 
 Example use of `wrapText` in your code: 
 ```js
-wrapText(ctx, 0, 0, canvas.width, wrapTextBox, 20, 3);
+wrapText(ctx, 0, 0, canvas.width, text, 20, 3);
 ```
