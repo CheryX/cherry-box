@@ -56,14 +56,14 @@ stream.pipe(out);
 
 # Using Typescript
 
-When using textObject you also need to import `TextObject`
+When using TextObject you also need to import `TextObject`
 
 ```ts
-import { textObject } from "cherry-box";
+import { TextObject } from "cherry-box";
 
 ...
 
-let text: TextObject = [
+let text: Array<TextObject> = [
     {
         text: "I like cookies!",
         color: "#ffffff",
@@ -79,8 +79,9 @@ let text: TextObject = [
 
 ## Popular functions
 
-* [textBox](#textBox) - Align the text to specified width and height, adjust the size of the font so it fits.
-* [textSchema](#textSchema) - An easy way to specify text color, font, shadow and more into a JSON object.
+* [textBox](#textBox) - Align the text
+* [wrapText](#wrapText) - Wrap the text
+* [TextObject](#TextObject) - Specify color, shadow, font for a part of the text.
 
 ## TextObject
 TextObject is made of multiple objects. These objects accepts the following values:

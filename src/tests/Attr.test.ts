@@ -8,13 +8,7 @@ test("getTotalWidth", () => {
     const text: Array<TextObject> = [{
         text: "test",
         font: 'Arial',
-        color: 'red',
-        modifier: '',
-        shadow: {
-            offset: [0, 0],
-            color: 'red',
-            blur: 4
-        }
+        color: 'red'
     }];
 
     expect( getTotalWidth(ctx, text, 20, 0) ).toBeCloseTo(32, -0.5);
